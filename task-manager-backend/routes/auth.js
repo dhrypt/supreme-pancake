@@ -1,5 +1,5 @@
 import express from "express";
-import { registerUser } from "../controllers/authController";
+import { loginUser, registerUser } from "../controllers/authController";
 
 const router = express.Router();
 
@@ -7,8 +7,6 @@ const router = express.Router();
 router.post("/register", registerUser);
 
 // Basic route for login
-router.post("/login", (req, res) => {
-  res.send("Login route");
-});
+router.post("/login", loginUser);
 
 export default router;
