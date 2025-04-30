@@ -22,8 +22,15 @@ export const createTask = async (req, res) => {
 };
 
 export const getTasks = async (req, res) => {
+  const { status } = req.query;
+
+  const filter = { userId: req.user };
+  if (status === "complete" || status === "incomplete") {
+    filter.status = status;
+  }
+
   try {
-    const tasks = await Task.find({ userId: req.user });
+    const tasks = await Task.find(filter);
     res.json(tasks);
   } catch (err) {
     res
