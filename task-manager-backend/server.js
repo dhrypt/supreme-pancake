@@ -2,7 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import authRoutes from "./routes/auth.js"; // Import auth routes
+import authRoutes from "./routes/auth.js";
+import taskRoutes from "./routes/tasks.js";
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // Setup routes
 app.use("/api/auth", authRoutes);
+app.use("/api/tasks", taskRoutes);
 
 // Default route to check server
 app.get("/", (req, res) => res.send("API is running"));
