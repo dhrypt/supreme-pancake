@@ -77,9 +77,39 @@ export default function Tasks() {
       </form>
       <ul className="space-y-2">
         {tasks.map((task) => (
-          <li key={task._id} className="p-3 border rounded">
-            <p className="font-medium">{task.title}</p>
-            <p className="text-sm text-gray-600">{task.description}</p>
+          <li
+            key={task._id}
+            className="p-3 border rounded flex justify-between items-start"
+          >
+            <div>
+              <p className="font-medium">{task.title}</p>
+              <p className="text-sm text-gray-600">{task.description}</p>
+            </div>
+            <button
+              onClick={async () => {
+                try {
+                  const res = await fetch(
+                    `${import.meta.env.VITE_API_URL}/api/tasks/${task._id}`,
+                    {
+                      method: "DELETE",
+                      headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                          "token"
+                        )}`,
+                      },
+                    }
+                  );
+
+                  if (!res.ok) throw new Error("Failed to delete task");
+                  setTasks((prev) => prev.filter((t) => t._id !== task._id));
+                } catch (err) {
+                  setError(err.message);
+                }
+              }}
+              className="text-red-500 hover:underline ml-4"
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
