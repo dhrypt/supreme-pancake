@@ -9,6 +9,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         {/* Other routes like /tasks will go here later */}
+        <Route path="/tasks" element={<Tasks />} />
       </Routes>
     </Router>
   );
