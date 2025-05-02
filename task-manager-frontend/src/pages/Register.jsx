@@ -3,7 +3,7 @@ import { register } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -25,6 +25,15 @@ export default function Register() {
     <div className="max-w-md mx-auto p-4">
       <h2 className="text-xl font-bold mb-4">Register</h2>
       <form onSubmit={handleSubmit} className="space-y-3">
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={form.name}
+          onChange={handleChange}
+          className="w-full p-2 border rounded"
+          required
+        />
         <input
           type="email"
           name="email"
