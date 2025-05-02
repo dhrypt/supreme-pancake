@@ -6,7 +6,7 @@ services:
     ports:
       - "5173:5173"
     volumes:
-      - ./task-manager-frontend:/app
+      - ./task-manager-frontend:/app:cached
       - /app/node_modules
     environment:
       - VITE_API_URL=http://localhost:5001

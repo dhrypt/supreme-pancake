@@ -40,6 +40,11 @@ export const login = async (userData) => {
   return data;
 };
 
+export const logout = () => {
+  token = null;
+  localStorage.removeItem("token");
+};
+
 export const getWithAuth = async (endpoint) => {
   const res = await fetch(`${API_URL}${endpoint}`, {
     headers: authHeaders(),
